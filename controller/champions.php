@@ -1,5 +1,18 @@
 <?php
 class Champions{
+	/**
+	* @param id: (string) champion’s id
+	* @return (object) Champion
+	*/
+	static function getById($id) {
+		global $api;
+
+		$staticData = $api->staticData();
+		$champion = $staticData->getChampion($id);
+
+		return $champion;
+	}
+
 	static function render() {
 		global $api;
 
@@ -20,9 +33,9 @@ class Champions{
 
 	/**
 	* @param name: (String) champion’s name
-	* @return (String) URL of champion’s square icon  
+	* @return (String) fixed name, used to get static data (eg. image)
 	*/
-	static function image($name) {
+	static function fixname($name) {
 		$name = str_replace(" ", "", $name);
 		$name = str_replace(".", "", $name);
 		$name = str_replace("'", "", $name);
@@ -30,10 +43,20 @@ class Champions{
 		if( $name == "LeBlanc" ){ $name = "Leblanc"; }
 		else if( $name == "Fiddlesticks" ){ $name = "FiddleSticks"; }
 		else if( $name == "ChoGath" ){ $name = "Chogath"; }
-		else if( $name == "Wukong" ){ $name = "Wukong"; }
+		else if( $name == "Wukong" ){ $name = "MonkeyKing"; }
 		else if( $name == "KhaZix" ){ $name = "Khazix"; }
 
-		return "http://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/".$name.".png";
+		return $name;
+	}
+
+	/**
+	* @param name: (String) champion’s name
+	* @return (String) URL of champion’s square icon  
+	*/
+	static function image($name) {
+		$name = self::fixname($name);
+
+		return "https://ddragon.leagueoflegends.com/cdn/6.9.1/img/champion/".$name.".png";
 	}
 }
 ?>
