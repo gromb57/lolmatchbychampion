@@ -1,0 +1,6 @@
+<?php
+/**
+* Copy and rename this file into constants.php
+*/
+DEFINE("RIOT_API_KEY", "__DEFINE_YOUR_KEY_HERE__");
+?>
