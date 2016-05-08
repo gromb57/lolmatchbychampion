@@ -20,7 +20,7 @@ class Match{
 				MatchUI::noMatch();
 			}else{
 				for($j = 0, $nb = count($matches); $j < $nb; $j++) {
-					MatchUI::render($matches[$i]);
+					MatchUI::render($matches[$j]);
 				}
 			}
 		}
